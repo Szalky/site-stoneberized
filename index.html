@@ -30,12 +30,24 @@
   nav{position:fixed;inset:0 0 auto 0;z-index:10;background:linear-gradient(#0b0b0bee,#0b0b0b00);transition:background .3s}
   nav.solid{background:#0b0b0bf2;border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .logo{font-family:Teko,sans-serif;font-weight:700;font-size:34px;color:var(--yellow);text-decoration:none;letter-spacing:.03em;border-bottom:3px solid var(--yellow);line-height:1;padding-bottom:2px}
+  .logo{font-family:Teko,'Arial Narrow',Impact,sans-serif;white-space:nowrap;flex-shrink:1;min-width:0;font-weight:700;font-size:34px;color:var(--yellow);text-decoration:none;letter-spacing:.03em;border-bottom:3px solid var(--yellow);line-height:1;padding-bottom:2px}
   .menu{display:flex;gap:28px;list-style:none}
   .menu a{text-decoration:none;font-family:Teko,sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.06em;color:var(--white)}
   .menu a:hover{color:var(--yellow)}
   @media (max-width:720px){.menu{gap:14px}.menu a{font-size:19px}.menu .hide-m{display:none}.logo{font-size:28px}}
-  @media (max-width:480px){.menu{display:none}.logo{font-size:28px}}
+  @media (max-width:480px){.logo{font-size:clamp(22px,7.4vw,30px)}}
+  .burger{display:none;background:none;border:1px solid var(--line);color:var(--white);width:40px;height:36px;cursor:pointer;place-items:center}
+  .burger svg{width:22px;height:22px}
+  @media (max-width:720px){
+    .burger{display:grid}
+    .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#0b0b0b;border-bottom:1px solid var(--line);padding:6px 4vw 14px}
+    nav.open .menu{display:flex}
+    nav.open{background:#0b0b0b}
+    .menu li{border-bottom:1px solid var(--line)}
+    .menu li:last-child{border-bottom:0}
+    .menu a{display:block;padding:12px 0 8px;font-size:26px}
+    .menu .hide-m,.menu .hide-s{display:block}
+  }
   .show .date{white-space:nowrap}
   .right{display:flex;align-items:center;gap:22px}
   .lang{display:flex;border:1px solid var(--yellow);font-family:Teko,sans-serif;font-size:20px;line-height:1}
@@ -59,7 +71,7 @@
   .btn svg{width:22px;height:22px;margin-top:-4px}
 
   /* SECTIONS */
-  section{padding:96px 0;border-top:1px solid var(--line)}
+  section{padding:96px 0;border-top:1px solid var(--line);scroll-margin-top:40px}
   h2{font-size:clamp(54px,8vw,96px);margin-bottom:36px}
   h2 em{font-style:normal;color:var(--yellow)}
 
@@ -115,6 +127,54 @@
 
   footer{padding:40px 0;border-top:1px solid var(--line);color:var(--grey);font-size:14px}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* hide the white frame baked into the photos */
+  .release img,.band img{clip-path:inset(1.6%)}
+  .release img{box-shadow:none}
+
+  /* ===== PHONE ===== */
+  @media (max-width:600px){
+    body{font-size:16px}
+    nav .wrap{height:58px;gap:12px}
+    .hero{min-height:auto;padding:110px 0 44px}
+    .hero::before{opacity:.4}
+    .kicker{font-size:19px;padding:3px 9px 0}
+    .hero h1{font-size:84px;margin:10px 0 6px}
+    .hero p.sub{font-size:17px}
+    .btns{gap:10px;margin-top:22px}
+    .btn{font-size:20px;padding:9px 16px 5px}
+    .hero .btn{width:100%;justify-content:center}
+    section{padding:52px 0}
+    h2{font-size:52px;margin-bottom:22px}
+    .release{gap:22px}
+    .release h3{font-size:52px}
+    .meta{font-size:12px;margin-bottom:12px}
+    .tracks{margin-bottom:6px}
+    iframe.spotify{height:80px;margin-top:18px}
+    .shows h3{font-size:24px}
+    .show{grid-template-columns:86px 1fr;gap:12px;padding:16px 0}
+    .show .date{font-size:30px}
+    .show .date small{font-size:16px}
+    .show .venue{font-size:17px}
+    .show .city{font-size:14px}
+    .show .tag{font-size:17px;padding:4px 10px 1px}
+    .past .show{padding:10px 0}
+    .past .show .date{font-size:24px}
+    .past h3{margin-top:30px !important}
+    .band{gap:24px}
+    .band img{aspect-ratio:1/1;object-position:50% 45%}
+    .band p.lead{font-size:18px}
+    .band p{margin-bottom:14px}
+    .facts li{font-size:15px}
+    .contact{gap:12px}
+    .card{padding:22px}
+    .card h3{font-size:32px;margin-bottom:6px}
+    .card p{margin-bottom:14px}
+    .socials{gap:8px}
+    .socials a{width:46px;height:46px}
+    .socials svg{width:22px;height:22px}
+    footer{padding:28px 0;font-size:13px}
+  }
 </style>
 </head>
 <body>
@@ -133,6 +193,7 @@
         <button type="button" data-lang="fr" aria-pressed="false">FR</button>
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
       </div>
+      <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     </div>
   </div>
 </nav>
@@ -346,6 +407,9 @@ const T = {
 
   document.getElementById("year").textContent = new Date().getFullYear();
   const nav = document.getElementById("nav");
+  const burger = document.getElementById("burger");
+  burger.addEventListener("click", () => { const o = nav.classList.toggle("open"); burger.setAttribute("aria-expanded", o); });
+  document.querySelectorAll(".menu a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); burger.setAttribute("aria-expanded", false); }));
   addEventListener("scroll",()=>nav.classList.toggle("solid",scrollY>40),{passive:true});
 })();
 </script>
