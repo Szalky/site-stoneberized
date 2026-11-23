@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merch — STONEBERIZED</title>
+<meta name="description" content="Stoneberized — nu-metal band from Liège, Belgium. New EP “Wage Effect” out now. Tour dates, music, videos, press kit and booking.">
+<meta property="og:title" content="STONEBERIZED">
+<meta property="og:description" content="Nu-metal from Liège, Belgium. New EP “Wage Effect” out now.">
+<meta property="og:image" content="https://www.stoneberized.com/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html#top"><img src="img/logo.svg" alt="STONEBERIZED" width="2064" height="578"></a>
+    <div class="right">
+      <ul class="menu">
+        <li class="hide-s"><a href="index.html#music" data-i18n="nav_music">Music</a></li>
+        <li><a href="index.html#shows" data-i18n="nav_shows">Shows</a></li>
+        <li class="hide-m"><a href="index.html#band" data-i18n="nav_band">Band</a></li>
+        <li><a href="merch.html" aria-current="page" data-i18n="nav_merch">Merch</a></li>
+        <li class="hide-s"><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      </div>
+      <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<main class="merch-page">
+  <div class="wrap">
+    <h1 class="display" data-i18n="merch_h">Merch</h1>
+    <span class="kicker" data-i18n="merch_soon">Coming soon</span>
+    <figure class="merch-photo" id="merch-photo">
+      <img src="img/merch.jpg" alt="Stoneberized merch" onerror="document.getElementById('merch-photo').hidden=true">
+    </figure>
+    <p class="merch-txt" data-i18n="merch_txt">T-shirts and more are on their way. Ask us at a show or drop us a line.</p>
+    <div class="btns"><a class="btn primary" href="mailto:stoneberized@outlook.com?subject=Merch" data-i18n="merch_btn">Ask us</a></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Stoneberized · Liège, <span data-i18n="belgium">Belgium</span></span>
+    <a href="mailto:stoneberized@outlook.com">stoneberized@outlook.com</a>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
