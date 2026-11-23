@@ -26,6 +26,34 @@
     document.getElementById("past-wrap").hidden = !past.length;
   }
 
+  function renderGallery(){
+    const g = document.getElementById("gallery");
+    if (!g || typeof GALLERY === "undefined") return;
+    g.innerHTML = GALLERY.map((p,i) => `<figure class="slide">
+      <img src="img/gallery/${p.file}" alt="Stoneberized live ${i+1}" loading="lazy" data-i="${i}">
+      ${p.by ? `<figcaption><span data-i18n="photo_by">${T[lang].photo_by}</span> ${p.by}</figcaption>` : ""}
+    </figure>`).join("");
+    g.querySelectorAll("img").forEach(img => img.addEventListener("error", () => {
+      img.closest(".slide").remove();
+      if (!g.querySelector(".slide")) document.getElementById("photos").hidden = true;
+    }));
+    const step = () => Math.max(260, g.clientWidth * 0.8);
+    document.querySelector(".gal-btn.prev").addEventListener("click", () => g.scrollBy({left: -step(), behavior: "smooth"}));
+    document.querySelector(".gal-btn.next").addEventListener("click", () => g.scrollBy({left: step(), behavior: "smooth"}));
+    // lightbox
+    const lb = document.getElementById("lightbox"), lbImg = lb.querySelector("img");
+    let cur = 0;
+    const imgs = () => [...g.querySelectorAll("img")];
+    const show = i => { const list = imgs(); cur = (i + list.length) % list.length; lbImg.src = list[cur].src; lb.hidden = false; };
+    g.addEventListener("click", e => { const im = e.target.closest("img"); if (im) show(imgs().indexOf(im)); });
+    lb.querySelector(".lb-close").addEventListener("click", () => lb.hidden = true);
+    lb.querySelector(".lb-prev").addEventListener("click", e => { e.stopPropagation(); show(cur-1); });
+    lb.querySelector(".lb-next").addEventListener("click", e => { e.stopPropagation(); show(cur+1); });
+    lb.addEventListener("click", e => { if (e.target === lb) lb.hidden = true; });
+    addEventListener("keydown", e => { if (lb.hidden) return; if (e.key === "Escape") lb.hidden = true; if (e.key === "ArrowLeft") show(cur-1); if (e.key === "ArrowRight") show(cur+1); });
+  }
+  renderGallery();
+
   function apply(l){
     lang = l;
     document.documentElement.lang = l;

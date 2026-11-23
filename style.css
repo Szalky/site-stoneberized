@@ -170,3 +170,27 @@
   .merch-photo img{width:100%;border:1px solid var(--line)}
   .merch-txt{margin-top:28px;max-width:640px;color:#ddd;font-size:19px}
   @media (max-width:600px){.merch-page{padding:100px 0 56px}.merch-page h1{font-size:72px}.merch-txt{font-size:17px}}
+
+  /* PHOTOS CAROUSEL */
+  .gal-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+  .gal-nav{display:flex;gap:10px;margin-bottom:40px}
+  .gal-btn{width:52px;height:52px;border:2px solid var(--yellow);background:none;color:var(--yellow);font-size:24px;cursor:pointer;transition:.2s}
+  .gal-btn:hover{background:var(--yellow);color:var(--black)}
+  .gallery{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:max(4vw,calc((100vw - 1120px)/2));padding:0 max(4vw,calc((100vw - 1120px)/2)) 14px;scrollbar-width:thin;scrollbar-color:var(--yellow) #1a1a1a}
+  .slide{flex:0 0 auto;scroll-snap-align:start;margin:0;position:relative}
+  .slide img{height:min(62vh,520px);width:auto;max-width:none;cursor:zoom-in;background:#111}
+  .slide figcaption{position:absolute;left:0;bottom:0;padding:5px 10px;background:#0b0b0bcc;color:var(--grey);font-size:12px}
+  .lightbox{position:fixed;inset:0;z-index:50;background:#000e;display:grid;place-items:center}
+  .lightbox[hidden]{display:none}
+  .lightbox img{max-width:92vw;max-height:88vh;width:auto;height:auto}
+  .lightbox button{position:absolute;background:none;border:0;color:var(--white);font-size:34px;cursor:pointer;padding:14px}
+  .lightbox button:hover{color:var(--yellow)}
+  .lb-close{top:8px;right:12px}
+  .lb-prev{left:8px;top:50%;transform:translateY(-50%)}
+  .lb-next{right:8px;top:50%;transform:translateY(-50%)}
+  @media (max-width:600px){
+    .gal-nav{display:none}
+    .slide img{height:auto;width:auto;max-height:min(58vh,440px);max-width:86vw}
+    .gallery{align-items:center}
+    .gallery{gap:10px}
+  }

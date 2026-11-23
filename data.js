@@ -15,11 +15,31 @@ const SHOWS = [
 ];
 
 /* =========================================================
+   PHOTOS — carousel. Files go in img/gallery/ ; order = order below.
+   by: photographer credit shown on the photo
+   ========================================================= */
+const GALLERY = [
+  { file: "01.jpg", by: "Hugues Pagacz / Reflektor" },
+  { file: "02.jpg", by: "Moksha Photo" },
+  { file: "03.jpg", by: "Hugues Pagacz / Reflektor" },
+  { file: "04.jpg", by: "Moksha Photo" },
+  { file: "05.jpg", by: "Hugues Pagacz / Reflektor" },
+  { file: "06.jpg", by: "Moksha Photo" },
+  { file: "07.jpg", by: "Hugues Pagacz / Reflektor" },
+  { file: "08.jpg", by: "Moksha Photo" },
+  { file: "09.jpg", by: "Hugues Pagacz / Reflektor" },
+  { file: "10.jpg", by: "Moksha Photo" },
+  { file: "11.jpg", by: "Moksha Photo" },
+  { file: "12.jpg", by: "Moksha Photo" },
+];
+
+/* =========================================================
    TEXTS — English (en) and French (fr)
    ========================================================= */
 const T = {
   en: {
-    nav_music:"Music", nav_shows:"Shows", nav_band:"Band", nav_merch:"Merch", nav_contact:"Contact",
+    nav_music:"Music", nav_shows:"Shows", nav_band:"Band", nav_merch:"Merch", nav_photos:"Photos", nav_contact:"Contact",
+    h_photos:"Live <em>photos</em>", photo_by:"Photo:",
     merch_h:"<em>Merch</em>", merch_txt:"T-shirts and more are on their way. Ask us at a show or drop us a line.", merch_soon:"Coming soon", merch_btn:"Ask us",
     kicker:"New EP out now",
     sub:"Nu-metal from Liège, Belgium. Heavy riffs, thick textures, rap and scream.",
@@ -40,7 +60,8 @@ const T = {
     belgium:"Belgium"
   },
   fr: {
-    nav_music:"Musique", nav_shows:"Concerts", nav_band:"Le groupe", nav_merch:"Merch", nav_contact:"Contact",
+    nav_music:"Musique", nav_shows:"Concerts", nav_band:"Le groupe", nav_merch:"Merch", nav_photos:"Photos", nav_contact:"Contact",
+    h_photos:"<em>Photos</em> live", photo_by:"Photo :",
     merch_h:"<em>Merch</em>", merch_txt:"T-shirts et autres articles arrivent bientôt. Demandez-nous au concert ou écrivez-nous.", merch_soon:"Bientôt disponible", merch_btn:"Nous contacter",
     kicker:"Nouvel EP disponible",
     sub:"Nu-metal liégeois. Riffs massifs, textures épaisses, rap et scream.",
