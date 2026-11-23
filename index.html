@@ -30,12 +30,13 @@
   nav{position:fixed;inset:0 0 auto 0;z-index:10;background:linear-gradient(#0b0b0bee,#0b0b0b00);transition:background .3s}
   nav.solid{background:#0b0b0bf2;border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .logo{font-family:Teko,'Arial Narrow',Impact,sans-serif;white-space:nowrap;flex-shrink:1;min-width:0;font-weight:700;font-size:34px;color:var(--yellow);text-decoration:none;letter-spacing:.03em;border-bottom:3px solid var(--yellow);line-height:1;padding-bottom:2px}
+  .logo{display:block;line-height:0;flex-shrink:1;min-width:0}
+  .logo img{height:48px;width:auto;max-width:100%}
   .menu{display:flex;gap:28px;list-style:none}
   .menu a{text-decoration:none;font-family:Teko,sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.06em;color:var(--white)}
   .menu a:hover{color:var(--yellow)}
-  @media (max-width:720px){.menu{gap:14px}.menu a{font-size:19px}.menu .hide-m{display:none}.logo{font-size:28px}}
-  @media (max-width:480px){.logo{font-size:clamp(22px,7.4vw,30px)}}
+  @media (max-width:720px){.menu{gap:14px}.menu a{font-size:19px}.menu .hide-m{display:none}.logo img{height:40px}}
+  @media (max-width:480px){.logo img{height:auto;width:clamp(150px,46vw,200px)}}
   .burger{display:none;background:none;border:1px solid var(--line);color:var(--white);width:40px;height:36px;cursor:pointer;place-items:center}
   .burger svg{width:22px;height:22px}
   @media (max-width:720px){
@@ -181,7 +182,7 @@
 
 <nav id="nav">
   <div class="wrap">
-    <a class="logo" href="#top">STONEBERIZED</a>
+    <a class="logo" href="#top"><img src="img/logo.svg" alt="STONEBERIZED" width="2064" height="578"></a>
     <div class="right">
       <ul class="menu">
         <li class="hide-s"><a href="#music" data-i18n="nav_music">Music</a></li>
