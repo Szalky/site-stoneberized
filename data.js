@@ -3,9 +3,12 @@
    CONCERTS — to add a show, copy one line and edit it.
    date: "YYYY-MM-DD"   link: optional (tickets / event page)
    note: text in English (en) and French (fr)
+   venue / city can be plain text or { en: "...", fr: "..." }
    Shows move to "Past shows" automatically after their date.
    ========================================================= */
 const SHOWS = [
+  { date: "2027-04-10", venue: { en: "Soon to be announced", fr: "Bientôt annoncé" }, city: "",
+    note: { en: "Stay tuned", fr: "Restez connectés" } },
   { date: "2026-12-04", venue: "OM Seraing", city: "Seraing, BE", link: "https://omconcerts.be/en/concert/bizkit-park-2/",
     note: { en: "Support for Bizkit Park", fr: "Première partie de Bizkit Park" } },
   { date: "2026-07-11", venue: "Mead House Festival", city: "" },
