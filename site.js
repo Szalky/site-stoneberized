@@ -8,13 +8,14 @@
     const today = new Date(); today.setHours(0,0,0,0);
     const loc = lang === "fr" ? "fr-BE" : "en-GB";
     const fmt = d => d.toLocaleDateString(loc,{day:"2-digit",month:"short"}).replace(".","").toUpperCase();
+    const tr = v => (v && typeof v === "object") ? (v[lang] || v.en || "") : (v || "");
     const row = s => {
       const d = new Date(s.date+"T00:00:00");
-      const note = s.note ? (s.note[lang] || s.note.en) : "";
-      const sub = [s.city, note].filter(Boolean).join(" · ");
+      const note = tr(s.note);
+      const sub = [tr(s.city), note].filter(Boolean).join(" · ");
       return `<div class="show">
         <div class="date">${fmt(d)}<small>${d.getFullYear()}</small></div>
-        <div><div class="venue">${s.venue}</div>${sub?`<div class="city">${sub}</div>`:""}</div>
+        <div><div class="venue">${tr(s.venue)}</div>${sub?`<div class="city">${sub}</div>`:""}</div>
         ${s.link?`<a class="tag" href="${s.link}" target="_blank" rel="noopener">${T[lang].info}</a>`:"<span></span>"}
       </div>`;
     };
