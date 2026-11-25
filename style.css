@@ -110,6 +110,24 @@
   .socials a:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
   .socials svg{width:24px;height:24px}
 
+  /* CONTACT FORM */
+  .cform{margin-top:20px;border:1px solid var(--line);padding:30px;background:var(--ink);display:grid;gap:16px}
+  .cform h3{font-size:40px;color:var(--yellow)}
+  .cform-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .cform label{display:grid;gap:6px}
+  .cform label span{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--grey)}
+  .cform input,.cform textarea{width:100%;background:var(--black);border:1px solid var(--line);color:var(--white);font:inherit;padding:12px 14px;border-radius:0;transition:border-color .2s}
+  .cform input:focus,.cform textarea:focus{outline:none;border-color:var(--yellow)}
+  .cform textarea{resize:vertical;min-height:140px}
+  .cform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .cform-foot{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .cform button{cursor:pointer}
+  .cform button:disabled{opacity:.6;cursor:wait}
+  .cform-status{color:var(--grey);font-size:15px}
+  .cform-status.ok{color:var(--yellow)}
+  .cform-status.err{color:#ff6b5b}
+  @media (max-width:600px){.cform{padding:22px;gap:12px}.cform h3{font-size:32px}.cform-row{grid-template-columns:1fr;gap:12px}.cform button{width:100%;justify-content:center}}
+
   footer{padding:40px 0;border-top:1px solid var(--line);color:var(--grey);font-size:14px}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 

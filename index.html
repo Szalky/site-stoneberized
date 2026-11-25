@@ -150,6 +150,20 @@
         </div>
       </div>
     </div>
+    <form class="cform" id="cform" action="https://formsubmit.co/stoneberized@outlook.com" method="POST">
+      <h3 class="display" data-i18n="f_h">Send us a message</h3>
+      <div class="cform-row">
+        <label><span data-i18n="f_name">Name</span><input type="text" name="name" required maxlength="100" autocomplete="name"></label>
+        <label><span data-i18n="f_email">Your e-mail</span><input type="email" name="email" required maxlength="150" autocomplete="email"></label>
+      </div>
+      <label><span data-i18n="f_subject">Subject</span><input type="text" name="title" required maxlength="150"></label>
+      <label><span data-i18n="f_msg">Message</span><textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="cform-foot">
+        <button type="submit" class="btn primary" data-i18n="f_send">Send</button>
+        <p class="cform-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
   </div>
 </section>
 
