@@ -31,27 +31,58 @@
     const g = document.getElementById("gallery");
     if (!g || typeof GALLERY === "undefined") return;
     g.innerHTML = GALLERY.map((p,i) => `<figure class="slide">
-      <img src="img/gallery/${p.file}" alt="Stoneberized live ${i+1}" loading="lazy" data-i="${i}">
+      <img src="img/gallery/${p.file}" alt="Stoneberized live ${i+1}" data-i="${i}" draggable="false">
       ${p.by ? `<figcaption><span data-i18n="photo_by">${T[lang].photo_by}</span> ${p.by}</figcaption>` : ""}
     </figure>`).join("");
-    g.querySelectorAll("img").forEach(img => img.addEventListener("error", () => {
-      img.closest(".slide").remove();
-      if (!g.querySelector(".slide")) document.getElementById("photos").hidden = true;
-    }));
-    const step = () => Math.max(260, g.clientWidth * 0.8);
-    document.querySelector(".gal-btn.prev").addEventListener("click", () => g.scrollBy({left: -step(), behavior: "smooth"}));
-    document.querySelector(".gal-btn.next").addEventListener("click", () => g.scrollBy({left: step(), behavior: "smooth"}));
-    // lightbox
-    const lb = document.getElementById("lightbox"), lbImg = lb.querySelector("img");
     let cur = 0;
+    const slides = () => [...g.querySelectorAll(".slide")];
+    // place each photo: centre, previous on the left, next on the right, the others hidden — endless loop
+    function layout(){
+      const list = slides(), n = list.length;
+      if (!n) { document.getElementById("photos").hidden = true; return; }
+      cur = (cur % n + n) % n;
+      const gap = Math.min(g.clientWidth * 0.4, 540);
+      list.forEach((s, i) => {
+        let d = i - cur;
+        if (d > n/2) d -= n;
+        if (d < -n/2) d += n;
+        if (n === 2 && d === -1) d = 1;
+        const a = Math.abs(d);
+        s.dataset.pos = d === 0 ? "center" : a === 1 ? "side" : "hidden";
+        const x = Math.max(-2, Math.min(2, d)) * gap;
+        s.style.transform = `translate(calc(-50% + ${x}px), -50%) scale(${d === 0 ? 1 : 0.74})`;
+        s.style.zIndex = 10 - Math.min(a, 9);
+      });
+    }
+    const go = k => { cur += k; layout(); };
+    g.querySelectorAll("img").forEach(img => img.addEventListener("error", () => { img.closest(".slide").remove(); layout(); }));
+    g.addEventListener("click", e => {
+      const s = e.target.closest(".slide"); if (!s) return;
+      const list = slides(), i = list.indexOf(s), n = list.length;
+      let d = i - cur; if (d > n/2) d -= n; if (d < -n/2) d += n;
+      if (d === 0) openLb(i); else go(d > 0 ? 1 : -1);
+    });
+    document.querySelector(".gal-btn.prev").addEventListener("click", () => go(-1));
+    document.querySelector(".gal-btn.next").addEventListener("click", () => go(1));
+    // swipe on phones
+    let sx = null;
+    g.addEventListener("touchstart", e => { sx = e.touches[0].clientX; }, {passive:true});
+    g.addEventListener("touchend", e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); });
+    addEventListener("resize", layout);
+    layout();
+    // lightbox (full screen)
+    const lb = document.getElementById("lightbox"), lbImg = lb.querySelector("img");
     const imgs = () => [...g.querySelectorAll("img")];
-    const show = i => { const list = imgs(); cur = (i + list.length) % list.length; lbImg.src = list[cur].src; lb.hidden = false; };
-    g.addEventListener("click", e => { const im = e.target.closest("img"); if (im) show(imgs().indexOf(im)); });
+    function openLb(i){ const list = imgs(); cur = (i + list.length) % list.length; lbImg.src = list[cur].src; lb.hidden = false; layout(); }
     lb.querySelector(".lb-close").addEventListener("click", () => lb.hidden = true);
-    lb.querySelector(".lb-prev").addEventListener("click", e => { e.stopPropagation(); show(cur-1); });
-    lb.querySelector(".lb-next").addEventListener("click", e => { e.stopPropagation(); show(cur+1); });
+    lb.querySelector(".lb-prev").addEventListener("click", e => { e.stopPropagation(); openLb(cur-1); });
+    lb.querySelector(".lb-next").addEventListener("click", e => { e.stopPropagation(); openLb(cur+1); });
     lb.addEventListener("click", e => { if (e.target === lb) lb.hidden = true; });
-    addEventListener("keydown", e => { if (lb.hidden) return; if (e.key === "Escape") lb.hidden = true; if (e.key === "ArrowLeft") show(cur-1); if (e.key === "ArrowRight") show(cur+1); });
+    addEventListener("keydown", e => {
+      if (!lb.hidden) { if (e.key === "Escape") lb.hidden = true; if (e.key === "ArrowLeft") openLb(cur-1); if (e.key === "ArrowRight") openLb(cur+1); return; }
+      const r = g.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0 && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { if (e.key === "ArrowLeft") go(-1); if (e.key === "ArrowRight") go(1); }
+    });
   }
   renderGallery();
 
