@@ -100,6 +100,30 @@
   document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => apply(b.dataset.lang)));
   apply(lang);
 
+  // contact form → e-mail to stoneberized@outlook.com (via FormSubmit)
+  const cf = document.getElementById("cform");
+  if (cf) cf.addEventListener("submit", async e => {
+    e.preventDefault();
+    const st = cf.querySelector(".cform-status"), btn = cf.querySelector("button");
+    if (cf._honey.value) return;
+    const f = new FormData(cf);
+    const data = {
+      Nom: f.get("name"), email: f.get("email"), Titre: f.get("title"), Message: f.get("message"),
+      _subject: "Site Stoneberized : " + f.get("title"), _replyto: f.get("email"), _template: "table", _captcha: "false"
+    };
+    btn.disabled = true; st.className = "cform-status"; st.textContent = T[lang].f_sending;
+    try {
+      const r = await fetch("https://formsubmit.co/ajax/stoneberized@outlook.com", {
+        method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"}, body: JSON.stringify(data)
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === false || j.success === "false") throw new Error(j.message || r.status);
+      cf.reset(); st.classList.add("ok"); st.textContent = T[lang].f_ok;
+    } catch(err) {
+      st.classList.add("err"); st.textContent = T[lang].f_err;
+    } finally { btn.disabled = false; }
+  });
+
   const y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
   const nav = document.getElementById("nav");
   const burger = document.getElementById("burger");

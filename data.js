@@ -60,6 +60,8 @@ const T = {
     c_booking:"Shows, festivals, collaborations — write to us.",
     c_press_h:"Press kit", c_press:"Bio, photos, cover art and EPK (FR / EN).", c_press_btn:"Download EPK",
     c_follow_h:"Follow", c_follow:"News, videos and behind the scenes.",
+    f_h:"Send us a message", f_name:"Name", f_email:"Your e-mail", f_subject:"Subject", f_msg:"Message", f_send:"Send",
+    f_sending:"Sending…", f_ok:"Thanks! Your message has been sent — we'll get back to you soon.", f_err:"Oops, the message could not be sent. Please try again or write to stoneberized@outlook.com.",
     belgium:"Belgium"
   },
   fr: {
@@ -82,6 +84,8 @@ const T = {
     c_booking:"Concerts, festivals, collaborations — écrivez-nous.",
     c_press_h:"Dossier presse", c_press:"Bio, photos, pochette et EPK (FR / EN).", c_press_btn:"Télécharger l'EPK",
     c_follow_h:"Suivez-nous", c_follow:"Actus, vidéos et coulisses.",
+    f_h:"Envoyez-nous un message", f_name:"Nom", f_email:"Votre e-mail", f_subject:"Titre", f_msg:"Message", f_send:"Envoyer",
+    f_sending:"Envoi…", f_ok:"Merci ! Votre message est bien parti, on vous répond vite.", f_err:"Oups, le message n'a pas pu être envoyé. Réessayez ou écrivez à stoneberized@outlook.com.",
     belgium:"Belgique"
   }
 };
